@@ -1,6 +1,9 @@
 import { Client, GatewayIntentBits } from "discord.js";
 import dotenv from "dotenv";
-import cmd from "./cmd.json" with { type: "json" };
+import cmd from "./cmd.js" 
+
+import { getAnimeRecommendations } from "./functions/recomendAnime.js";
+
 dotenv.config();
 const client = new Client({
   intents: [
@@ -26,11 +29,22 @@ client.once("ready", async () => {
     console.error("❌ Error al enviar el mensaje:", error);
   }*/
 });
-console.log(cmd)
 
-client.on("messageCreate", (message) => {
+
+
+client.on("messageCreate", async (message) => {
+
+  if(message.content === "!help"){
+    message.reply("Lista de comandos:\n" + cmd.map(c => c.comand + " - " + c.text).join("\n"));
+  }
+  if(message.content === "!anime"){
+    let res = await getAnimeRecommendations();
+    message.reply("Te recomiendo ver: " + res.titulo + "\n" + res.link);
+  }
+
   for (const command of cmd) {
     if (message.content === command.comand) {
+      if(command.onLyView) continue;
       message.reply(command.text);
     }
   }
