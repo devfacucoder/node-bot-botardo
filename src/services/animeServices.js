@@ -9,7 +9,7 @@
 import axios from "axios";
 import * as cheerio from "cheerio";
 
-async function extraerHTML() {
+export const getRandomAnime = async () => {
   try {
     const { data } = await axios.get("https://www3.animeflv.net/browse");
     const $ = cheerio.load(data);
@@ -25,17 +25,10 @@ async function extraerHTML() {
 
     return res[numerRandom];
   } catch (error) {
-    console.error("❌ Error al obtener el HTML:", error.message);
+    console.error(
+      "❌ Error al obtener el HTML:en recomendar anime",
+      error.message
+    );
+    return null;
   }
-}
-
-console.log( await extraerHTML())
-
-const getAnimeRecommendations = async () => {
-  const numerRandom = Math.floor(Math.random() * 24) + 1;
-
-  const data = await extraerHTML(); //TODO proximamente que la peticion se cada 10min para que no haga peticion por cada mensaje
-  return data[numerRandom];
 };
-
-export { getAnimeRecommendations };

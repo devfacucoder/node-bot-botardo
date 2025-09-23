@@ -1,3 +1,5 @@
+import packageJson from "../package.json" with { type: "json" };
+
 const cmd = [
   {
     comand: "!ping",
@@ -5,16 +7,19 @@ const cmd = [
   },
   {
     comand: "!streemer",
-    text: "magocloc007",
+    text: "funcion para el mago es gay",
   },
   {
     comand: "!info",
-    text: "Soy un bot que avisa cuando un canal de Twitch está en directo. Usa !help para ver los comandos.",
+    text: "robot info: version " + packageJson.version + " - creador: Javi",
+    
   },
   {
     comand: "!anime",
     text: "usa este comando y te dara un anime al azar mas o menos",
     onLyView: true,
   },
+  
+  
 ];
 export default cmd;
