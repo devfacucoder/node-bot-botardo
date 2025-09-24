@@ -2,7 +2,7 @@ import getBuildLolApi from "../services/lolBuildServices.js";
 
 export default {
   name: "!buildlol",
-  description: "esto te dara una build de los aleatorio",
+  description: "esto te dara una build de lol aleatoria",
   async execute(message) {
     const dataApi = await getBuildLolApi();
     let text = ""
