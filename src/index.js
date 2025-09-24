@@ -35,24 +35,11 @@ client.once("ready", async () => {
   try {
     console.log(`✅ Bot conectado como ${client.user.tag}`);
     //await reminder(client);
-    /*
-    const channel = await client.channels.fetch(CHANNEL_ID);
-    await reminder(client);
-    const latsMsg = await channel.messages.fetch({ limit: 1 });
-    const userId = process.env.USER_SPECIAL; // ID del usuario
-    await channel.send(`<@${userId}> ¡Te mencionaron! 🔔`);
-    */
+    
   } catch (error) {
     console.error("❌ Error al enviar el mensaje:", error);
   }
-  /*
-    // Buscar el canal
-    const channel = await client.channels.fetch(CHANNEL_ID);
-
-    // Enviar mensaje automático
-    await channel.send("🚀 Bot iniciado! Este mensaje se envió automáticamente.");
-    console.log("📩 Mensaje enviado correctamente!");
-    */
+  
 });
 
 client.on("messageCreate", async (message) => {
@@ -88,10 +75,14 @@ client.on("messageCreate", async (message) => {
       );
   } // para que no se responda a si mismo
 
+
+
   if (message.content === "!anime") {
     animeComand.execute(message);
   }
 
+
+  
   if (message.content === "!lolbuild") {
     lolBuild.execute(message);
   }
